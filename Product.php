@@ -1,5 +1,5 @@
 <?php
-// Product.php - VERSI FIXED LENGKAP
+
 require_once 'config.php';
 
 class Product {
@@ -9,9 +9,9 @@ class Product {
         $this->pdo = getDB();
     }
     
-    // CREATE PRODUCT
+
     public function create($name, $price, $description, $user_id) {
-        // Validasi
+        
         if (empty($name)) {
             return ['success' => false, 'message' => 'Nama produk wajib diisi'];
         }
@@ -47,7 +47,7 @@ class Product {
         return ['success' => false, 'message' => 'Gagal menambahkan produk'];
     }
     
-    // GET ALL PRODUCTS
+
     public function getAll() {
         try {
             $stmt = $this->pdo->query("
@@ -63,7 +63,7 @@ class Product {
         }
     }
     
-    // GET PRODUCT BY ID
+    
     public function getById($id) {
         try {
             $stmt = $this->pdo->prepare("
@@ -80,7 +80,7 @@ class Product {
         }
     }
     
-    // UPDATE PRODUCT
+    
     public function update($id, $name, $price, $description) {
         if (empty($name) || $price <= 0) {
             return ['success' => false, 'message' => 'Nama dan harga harus diisi'];
@@ -109,7 +109,7 @@ class Product {
         }
     }
     
-    // DELETE PRODUCT
+    
     public function delete($id) {
         try {
             $stmt = $this->pdo->prepare("DELETE FROM products WHERE id = ?");
@@ -124,7 +124,7 @@ class Product {
         }
     }
     
-    // COUNT PRODUCTS
+    
     public function count() {
         try {
             $stmt = $this->pdo->query("SELECT COUNT(*) as total FROM products");
@@ -135,7 +135,7 @@ class Product {
         }
     }
     
-    // COUNT PRODUCTS BY USER - METHOD BARU
+    
     public function countByUser($user_id) {
         try {
             $stmt = $this->pdo->prepare("SELECT COUNT(*) as total FROM products WHERE user_id = ?");
@@ -148,7 +148,7 @@ class Product {
         }
     }
     
-    // GET PRODUCTS BY USER
+    
     public function getByUserId($user_id) {
         try {
             $stmt = $this->pdo->prepare("
@@ -163,7 +163,7 @@ class Product {
         }
     }
     
-    // GET PRODUCTS BY CATEGORY (Opsional)
+    
     public function getByCategory($category_id) {
         try {
             $stmt = $this->pdo->prepare("
